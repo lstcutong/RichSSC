@@ -1,6 +1,6 @@
 # ReS-SSC
 
-![](./pics/2.jpg)
+![](./pics/7.jpg)
 
 This repository contains the code to reproduce the results from the paper
 Resolution-switchable 3D Semantic Scene Completion
@@ -50,13 +50,14 @@ Put the pre-trained model in the folder you want, then modify the 'pretrain-en' 
 ## Eval
 
 To eval our method and reproduce the results reported in the paper, you may download our pretrained model on NYUCAD dataset:
+password for all：resc
 
-|              | (30,18,30) | (60,36,60) | (120,72,120) |
-| :----------: | :--------: | :--------: | :----------: |
-|  [DDRNet]()  |    34.5    |    41.5    |     32.9     |
-|  [AICNet]()  |    36.8    |    43.1    |     33.8     |
-| [Ours-DDR]() |    40.7    |    42.6    |     38.0     |
-| [Ours-AIC]() |  **43.0**  |  **44.7**  |   **40.5**   |
+|                                                             | (30,18,30) | (60,36,60) | (120,72,120) |
+| :---------------------------------------------------------: | :--------: | :--------: | :----------: |
+|  [DDRNet](https://pan.baidu.com/s/1IgfpmcTkzmMOi6eUpncyBw)  |    34.5    |    41.5    |     32.9     |
+|  [AICNet](https://pan.baidu.com/s/1NmLdGs0XcSfEMGR74lB9zw)  |    36.8    |    43.1    |     33.8     |
+| [Ours-DDR](https://pan.baidu.com/s/1bLhBxKw6jR-BJsHygM-6CQ) |    40.7    |    42.6    |     38.0     |
+| [Ours-AIC](https://pan.baidu.com/s/1_tCB9282EJuZbwQQgHhy6Q) |  **43.0**  |  **44.7**  |   **40.5**   |
 
 then, you may run the following instructions to eval our method
 
