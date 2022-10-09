@@ -71,14 +71,18 @@ class RichSSC(nn.Module):
 
     def forward_test(self, query_points, c_feature, sample_mode="center"):
         if sample_mode == 'center':
-            return self.decoding(query_points, self.fx(query_points, c_feature))
+            b, pn, c = query_points.shape
+            if pn < 102400:
+                return self.decoding(query_points, self.fx(query_points, c_feature))
+            else:
+                return self.decoding_split_mode(query_points, c_feature)
         elif sample_mode == "vote":
             b, pn, en, c = query_points.shape
             query_points = query_points.reshape((b, -1, c))
-            try:
+            if pn * en <= 102400:
                 query_condition = self.fx(query_points, c_feature)
                 out = self.decoding(query_points, query_condition)
-            except:
+            else:
                 out = self.decoding_split_mode(query_points, c_feature)
 
             out = out.cpu().detach().numpy()
