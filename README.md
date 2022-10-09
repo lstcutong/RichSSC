@@ -1,4 +1,4 @@
-# ReS-SSC
+# RichSSC
 
 ![](./pics/7.jpg)
 
@@ -42,7 +42,7 @@ position     = npz_file['position']	# 2D-3D projection mapping index
 To train our point decoder, first you need to pre-train the encoder. You can refer to [waterljwant](https://github.com/waterljwant/SSC) to pre-train AICNet or DDRNet. Or you can use our pre-trained encoders (can be found in the "Eval"), then train our point decoder by running the following script
 
 ```
-bash ./res_train.sh
+bash ./rich_train.sh
 ```
 
 Put the pre-trained model in the folder you want, then modify the 'pretrain-en' parameter in the script to your storage path. 
