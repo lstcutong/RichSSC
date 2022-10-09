@@ -241,7 +241,7 @@ def validate_on_batch(predict, target, nonempty=None):  # CPU
 
 
 def eval(imp_or_vox="imp"):
-    from models.ReS import ReS_SSC
+    from models.RichSSC import RichSSC
     base_dirs = Path.db_root_dir(args.dataset)
 
     print('eval data:{}'.format(base_dirs['val']))
@@ -252,7 +252,7 @@ def eval(imp_or_vox="imp"):
         num_workers=args.workers,
     )
 
-    net = ReS_SSC(mlp_layers=args.fc_nblocks, basic_module=args.model, use_cls=args.use_cls).cuda()
+    net = RichSSC(mlp_layers=args.fc_nblocks, basic_module=args.model, use_cls=args.use_cls).cuda()
     # args.resume="./pretrain_model/aicnet_imp/cpBest_SSC_IMP.pth.tar"
     # print(net)
     net = torch.nn.DataParallel(net)  # Multi-GPU

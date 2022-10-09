@@ -7,9 +7,9 @@ from .DDRNet import SSC_RGBD_DDRNet
 import os
 import torch.nn.functional as F
 import numpy as np
-class ImpRGBD(nn.Module):
+class RichSSC(nn.Module):
     def __init__(self, cls=12, basic_module="aic", mlp_layers=5, pretrain_encode=None, use_cls=True, args=None):
-        super(ImpRGBD, self).__init__()
+        super(RichSSC, self).__init__()
         if basic_module == "aic":
             self.encoding = SSC_RGBD_AICNet()
             out_feature = 256
@@ -57,15 +57,16 @@ class ImpRGBD(nn.Module):
         num_points = test_points.shape[1]
         iters = int(num_points / batch_test)
         pred = []
-        for i in range(iters):
-            points = test_points[:, i * batch_test:(i + 1) * batch_test, :]
-            out = self.decoding(points, self.fx(points, c_feature))
-            pred.append(out)
+        with torch.no_grad():
+            for i in range(iters):
+                points = test_points[:, i * batch_test:(i + 1) * batch_test, :]
+                out = self.decoding(points, self.fx(points, c_feature))
+                pred.append(out)
 
-        if iters * batch_test < num_points:
-            points = test_points[:, iters * batch_test:, :]
-            out = self.decoding(points, self.fx(points, c_feature))
-            pred.append(out)
+            if iters * batch_test < num_points:
+                points = test_points[:, iters * batch_test:, :]
+                out = self.decoding(points, self.fx(points, c_feature))
+                pred.append(out)
         return torch.cat(pred, dim=1)
 
     def forward_test(self, query_points, c_feature, sample_mode="center"):

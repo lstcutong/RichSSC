@@ -1,5 +1,5 @@
 from turtle import pos
-from models.ReS import ReS_SSC
+from models.RichSSC import RichSSC
 from utils import seed_torch
 import os
 
@@ -18,7 +18,7 @@ from config import colorMap, cls_name
 
 from visualize import *
 import config
-from models.ReS import ReS_SSC
+from models.RichSSC import ReS_SSC
 import sys
 import warnings
 from losses import *
@@ -158,7 +158,7 @@ def vis_res(model, epoch):
 def train():
     # ---- create model ---------- ---------- ---------- ---------- ----------#
     print(args)
-    net = ReS_SSC(basic_module=args.model, pretrain_encode=args.pretrain_en, mlp_layers=args.fc_nblocks, use_cls=args.use_cls).cuda()
+    net = RichSSC(basic_module=args.model, pretrain_encode=args.pretrain_en, mlp_layers=args.fc_nblocks, use_cls=args.use_cls).cuda()
     trainable_param = net.get_trainable_parameters(lr_decode=args.lr, finetune_encode=False, lr_encode=1e-5)
     print(net)
     net = torch.nn.DataParallel(net)  # Multi-GPU
