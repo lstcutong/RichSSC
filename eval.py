@@ -142,6 +142,7 @@ def save_vis(pred, save_folder, filename, nonempty):
         y = pred[i]
         y[np.where(nonempty[i] == 0)] = 0
         yc = colorMap[y]
+        np.save(os.path.join(save_folder, filename[i] + ".npy"), y)
         mesh = convert_voxel_into_open3dmesh(yc, size=0.8)
         o3d.io.write_triangle_mesh(os.path.join(save_folder, filename[i] + ".obj"), mesh)
 

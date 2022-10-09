@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
 import torch.nn.functional as F
-from .RBF import *
+
 class ResnetBlockFC(nn.Module):
     ''' Fully connected ResNet Block class.
 
